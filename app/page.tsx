@@ -12,15 +12,19 @@ export default async function Home() {
         Using {isUsingGlobal() ? "global object" : "module-level variable"}
       </h2>
       <ClientForm />
-      {!isUsingGlobal() && (
-        <h3>
-          Update <pre style={{ display: "inline" }}>.env.local</pre> to the
-          following for a workaround
-          <pre style={{ WebkitUserSelect: "all", userSelect: "all" }}>
-            NEXT_PUBLIC_USE_GLOBAL=1
-          </pre>
-        </h3>
-      )}
+      {!isUsingGlobal() && <EnvPrompt />}
     </main>
+  );
+}
+
+function EnvPrompt() {
+  return (
+    <h3>
+      Update <pre style={{ display: "inline" }}>.env.local</pre> to the
+      following for a workaround
+      <pre style={{ WebkitUserSelect: "all", userSelect: "all" }}>
+        NEXT_PUBLIC_USE_GLOBAL=1
+      </pre>
+    </h3>
   );
 }
